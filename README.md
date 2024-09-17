@@ -1,17 +1,3 @@
-# Deno Pipeline Example
+# Simple Deno App
 
-This is an example using the
-[Deno Pipeline](https://github.com/fluent-ci-templates/deno-pipeline).
-
-## 🚀 Usage
-
-You need to set the following environment variables:
-
-- `DENO_DEPLOY_TOKEN`: Your Deno Deploy token.
-- `DENO_PROJECT`: Your project name.
-
-Then, run the following command:
-
-```bash
-fluentci run . fmt lint deploy
-```
+This is a simple demo app using Deno
