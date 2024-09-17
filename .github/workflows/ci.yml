@@ -24,9 +24,6 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
-      - name: add remote server to known hosts
-        run: |
-          ssh-keyscan -H 51.75.143.224 >> ~/.ssh/known_hosts
       - name: deploy to server
         run: |
           echo "KAMAL_REGISTRY_PASSWORD=$KAMAL_REGISTRY_PASSWORD" >> .env
