@@ -22,6 +22,13 @@ registry:
   password:
     - KAMAL_REGISTRY_PASSWORD
 
+builder:
+  multiarch: false
+
+healthcheck:
+  path: /
+  port: 8000
+
 # Inject ENV variables into containers (secrets come from .env).
 # Remember to run `kamal env push` after making changes!
 # env:
