@@ -29,4 +29,5 @@ jobs:
           fluentci run --wasm kamal deploy
         env:
           KAMAL_REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+          KAMAL_VERSION: 1.9.0
 
