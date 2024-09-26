@@ -7,6 +7,13 @@ ssh:
 # Name of the container image.
 image: ghcr.io/tsirysndr/hello-deno
 
+labels:
+  traefik.http.routers.hello-deno.rule: Host(`prod.novity.io`)
+  traefik.http.routers.hello-deno.middlewares: redirect-to-https
+  traefik.http.routers.hello-deno.tls: true
+  traefik.http.routers.hello-deno.tls.certresolver: letsencrypt
+  traefik.http.middlewares.redirect-to-https.redirectscheme.scheme: https  
+
 # Deploy to these servers.
 servers:
   - 51.75.143.224
@@ -29,6 +36,20 @@ healthcheck:
   path: /
   port: 8000
 
+traefik:
+  args:
+    entrypoints.websecure.http.tls: true
+    entryPoints.web.address: ":80"
+    entryPoints.websecure.address: ":443"
+    certificatesResolvers.letsencrypt.acme.storage: "/letsencrypt/acme.json"
+    certificatesResolvers.letsencrypt.acme.email: tsiry@novity.io
+    certificatesResolvers.letsencrypt.acme.httpchallenge: true
+    certificatesResolvers.letsencrypt.acme.httpchallenge.entrypoint: web
+  options:
+    publish:
+      - 443:443
+    volume:
+      - "/letsencrypt/acme.json:/letsencrypt/acme.json"
 # Inject ENV variables into containers (secrets come from .env).
 # Remember to run `kamal env push` after making changes!
 # env:
